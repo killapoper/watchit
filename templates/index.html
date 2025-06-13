@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FreeCinema - Apple TV Style</title>
-    <link rel="stylesheet" href="/static/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch IT — Мир фильмов</title>
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <h1 class="logo">WatchIT</h1>
+      <nav>
+        <ul class="menu">
+          <li><a href="#" class="active">Главная</a></li>
+          <li><a href="#">Каталог</a></li>
+          <li><a href="#">Избранное</a></li>
+          <li><a href="#">О нас</a></li>
+        </ul>
+      </nav>
+      <div class="search-container">
+        <input type="search" placeholder="Поиск фильмов..." aria-label="Поиск фильмов" id="searchInput" />
+      </div>
+    </div>
+  </header>
 
-<header>
-    <h1>FreeCinema</h1>
-</header>
-
-<main>
-    <section class="catalog">
-        <div class="card" tabindex="0">
-            <img src="/static/poster1.jpg" alt="Фильм 1" />
-            <div class="card-info">
-                <h2>Название фильма 1</h2>
-                <button class="watch-btn">Смотреть</button>
-            </div>
+  <main>
+    <section class="catalog" id="catalog">
+      <div class="card" tabindex="0">
+        <img src="/static/poster1.jpg" alt="Фильм 1" />
+        <div class="card-info">
+          <h2>Название фильма 1</h2>
+          <button class="watch-btn">Смотреть</button>
         </div>
-        <div class="card" tabindex="0">
-            <img src="/static/poster2.jpg" alt="Фильм 2" />
-            <div class="card-info">
-                <h2>Название фильма 2</h2>
-                <button class="watch-btn">Смотреть</button>
-            </div>
+      </div>
+      <div class="card" tabindex="0">
+        <img src="/static/poster2.jpg" alt="Фильм 2" />
+        <div class="card-info">
+          <h2>Название фильма 2</h2>
+          <button class="watch-btn">Смотреть</button>
         </div>
-        <div class="card" tabindex="0">
-            <img src="/static/poster3.jpg" alt="Фильм 3" />
-            <div class="card-info">
-                <h2>Название фильма 3</h2>
-                <button class="watch-btn">Смотреть</button>
-            </div>
+      </div>
+      <div class="card" tabindex="0">
+        <img src="/static/poster3.jpg" alt="Фильм 3" />
+        <div class="card-info">
+          <h2>Название фильма 3</h2>
+          <button class="watch-btn">Смотреть</button>
         </div>
+      </div>
     </section>
-</main>
+  </main>
 
-<script src="/static/script.js"></script>
+  <script src="/static/script.js"></script>
 </body>
 </html>
