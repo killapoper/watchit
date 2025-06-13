@@ -8,29 +8,33 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">🎬 WatchIt</div>
-    <input type="text" placeholder="Поиск..." class="search" />
-  </header>
+  <div class="container">
+    <aside class="sidebar glass">
+      <div class="logo">🎬 WatchIt</div>
+      <input type="text" placeholder="Поиск..." class="search" />
+      <nav>
+        <ul>
+          <li><i class="fas fa-film"></i> Каталог</li>
+          <li><i class="fas fa-heart"></i> Избранное</li>
+          <li><i class="fas fa-user"></i> Профиль</li>
+        </ul>
+      </nav>
+    </aside>
 
-  <main>
-    <section class="film-grid">
-      <!-- Ряды карточек -->
-      <div class="film-row">
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 1</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 2</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 3</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 4</span></div>
-      </div>
-      <div class="film-row">
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 5</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 6</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 7</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 8</span></div>
-      </div>
-    </section>
-  </main>
-
+    <main class="content">
+      <section class="film-grid">
+        <!-- Карточки -->
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 1</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 2</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 3</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 4</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 5</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 6</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 7</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 8</span></div>
+      </section>
+    </main>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
