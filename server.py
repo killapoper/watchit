@@ -13,6 +13,7 @@
 #     print(f"🚀 Сервер запущен на http://127.0.0.1:{PORT}")
 #     httpd.serve_forever()
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
@@ -21,4 +22,5 @@ def home():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # Render укажет нужный порт
+    app.run(host='0.0.0.0', port=port)
