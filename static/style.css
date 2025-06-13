@@ -1,17 +1,153 @@
-body, html { margin:0; padding:0; font-family: -apple-system, sans-serif; background: #0d1b2a; color: #fff; }
-.sidebar { /* как раньше */ }
-.content { padding:20px; margin-left:240px;}
-.slider { display:flex; overflow-x:auto; scroll-snap-type: x mandatory; gap:10px; margin-bottom:20px;}
-.slide { flex:0 0 auto; width:90%; scroll-snap-align:center; position:relative; }
-.slide img { width:100%; border-radius:16px; filter: brightness(0.9);}
-.film-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:20px;}
-.card { background:rgba(255,255,255,0.05); border-radius:16px; backdrop-filter: blur(10px); transition:0.3s; cursor:pointer; overflow:hidden; opacity:0; transform:translateY(20px);}
-.card img{width:100%;display:block; border-bottom:1px solid rgba(255,255,255,0.1);}
-.card-info { padding:10px; text-align:center;}
-.card:hover { transform: scale(1.05); box-shadow:0 0 20px rgba(255,255,255,0.15);}
-.footer { text-align:center;padding:15px;background:#1b263b;}
-.film-page { padding:20px; max-width:800px; margin:20px auto;}
-.film-content { display:flex; gap:20px; }
-.film-content img { width:40%; border-radius:16px; }
-.back { margin-bottom:20px; }
-.watch-btn { padding:10px 20px;border:none;border-radius:10px;background:linear-gradient(45deg,#778da9,#415a77);cursor:pointer;}
+/* Общие стили */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background-color: #0d1b2a;
+  color: #e0e1dd;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Боковое меню */
+.sidebar {
+  width: 220px;
+  background: rgba(13, 27, 42, 0.6);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 20px 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+nav ul li:hover {
+  color: #778da9;
+}
+
+/* Контент */
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.08);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card span {
+  padding: 12px;
+  display: block;
+  font-size: 16px;
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background: #1b263b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.modal-content video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .film-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .film-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
