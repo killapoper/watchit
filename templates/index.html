@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WatchIt</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="container">
     <aside class="sidebar glass">
-      <div class="logo">🎬 WatchIt</div>
+      <div class="logo">WatchIt</div>
       <input type="text" placeholder="Поиск..." class="search" />
       <nav>
         <ul>
@@ -22,19 +22,32 @@
     </aside>
 
     <main class="content">
+      <h2 class="section-title">🔥 Сейчас в тренде</h2>
       <section class="film-grid">
-        <!-- Карточки -->
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 1</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 2</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 3</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 4</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 5</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 6</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 7</span></div>
-        <div class="card"><img src="https://placehold.co/300x450" alt=""><span>Фильм 8</span></div>
+        {% for i in range(1, 5) %}
+        <div class="card">
+          <img src="https://placehold.co/300x450?text=Movie+{{ i }}" alt="">
+          <div class="card-info"><span>Фильм {{ i }}</span></div>
+        </div>
+        {% endfor %}
+      </section>
+
+      <h2 class="section-title">⏯ Продолжить просмотр</h2>
+      <section class="film-grid">
+        {% for i in range(5, 9) %}
+        <div class="card">
+          <img src="https://placehold.co/300x450?text=Movie+{{ i }}" alt="">
+          <div class="card-info"><span>Фильм {{ i }}</span></div>
+        </div>
+        {% endfor %}
       </section>
     </main>
   </div>
-  <script src="script.js"></script>
+
+  <footer class="footer">
+    <p>&copy; 2025 WatchIt. Все права защищены.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
