@@ -5,22 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Watch It</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="app">
     <header class="header">
-      <h1>Watch It</h1>
+      <img src="{{ url_for('static', filename='banner.jpg') }}" alt="Banner" class="banner">
+      <div class="top-bar">
+        <h1 class="logo">Watch It</h1>
+        <input type="text" id="searchInput" placeholder="Поиск..." onkeyup="filterMovies()" />
+        <button class="upload-btn">Загрузить</button>
+      </div>
+      <div class="filter-buttons">
+        <button onclick="filterCategory('all')">Все</button>
+        <button onclick="filterCategory('movie')">Фильмы</button>
+        <button onclick="filterCategory('series')">Сериалы</button>
+      </div>
     </header>
+
     <main class="movie-list">
-      <div class="movie-card" onclick="openPlayer('Movie Title 1', 'description', 'poster1.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+      <div class="movie-card movie" onclick="openPlayer('Movie Title 1', 'description', 'poster1.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
         <img src="{{ url_for('static', filename='poster1.jpg') }}" alt="Movie 1" />
         <h2>Movie Title 1</h2>
       </div>
-      <div class="movie-card" onclick="openPlayer('Movie Title 2', 'description', 'poster2.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
-        <img src="{{ url_for('static', filename='poster2.jpg') }}" alt="Movie 2" />
-        <h2>Movie Title 2</h2>
+      <div class="movie-card series" onclick="openPlayer('Series Title 2', 'description', 'poster2.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <img src="{{ url_for('static', filename='poster2.jpg') }}" alt="Series 2" />
+        <h2>Series Title 2</h2>
       </div>
     </main>
+
     <div id="playerModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closePlayer()">&times;</span>
