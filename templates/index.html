@@ -1,48 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Watch It</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="app">
-    <header class="header">
-      <img src="{{ url_for('static', filename='banner.jpg') }}" alt="Banner" class="banner">
-      <div class="top-bar">
-        <h1 class="logo">Watch It</h1>
-        <input type="text" id="searchInput" placeholder="Поиск..." onkeyup="filterMovies()" />
-        <button class="upload-btn">Загрузить</button>
-      </div>
-      <div class="filter-buttons">
-        <button onclick="filterCategory('all')">Все</button>
-        <button onclick="filterCategory('movie')">Фильмы</button>
-        <button onclick="filterCategory('series')">Сериалы</button>
-      </div>
+
+  <!-- Заставка -->
+  <div class="splash-screen">
+    <h1 class="splash-logo">Watch It</h1>
+  </div>
+
+  <!-- Анимированный фон -->
+  <div class="animated_background.gif"></div>
+
+  <div class="container">
+    <header>
+      <h1 class="title">Watch It</h1>
+      <input type="text" placeholder="Поиск фильмов и сериалов..." class="search-input" />
     </header>
 
-    <main class="movie-list">
-      <div class="movie-card movie" onclick="openPlayer('Movie Title 1', 'description', 'poster1.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
-        <img src="{{ url_for('static', filename='poster1.jpg') }}" alt="Movie 1" />
-        <h2>Movie Title 1</h2>
-      </div>
-      <div class="movie-card series" onclick="openPlayer('Series Title 2', 'description', 'poster2.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
-        <img src="{{ url_for('static', filename='poster2.jpg') }}" alt="Series 2" />
-        <h2>Series Title 2</h2>
-      </div>
-    </main>
+    <nav class="filter-bar">
+      <button class="filter-btn">Фильмы</button>
+      <button class="filter-btn">Сериалы</button>
+      <button class="filter-btn">Загрузки</button>
+    </nav>
 
-    <div id="playerModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closePlayer()">&times;</span>
-        <iframe id="playerFrame" src="" frameborder="0" allowfullscreen></iframe>
-        <h2 id="playerTitle"></h2>
-        <p id="playerDescription"></p>
-      </div>
-    </div>
+    <main class="movie-grid">
+      <!-- Карточки фильмов будут добавлены JavaScript-ом -->
+    </main>
   </div>
+
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
