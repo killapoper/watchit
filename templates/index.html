@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Watch It</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <div class="app">
@@ -13,11 +13,11 @@
     </header>
     <main class="movie-list">
       <div class="movie-card" onclick="openPlayer('Movie Title 1', 'description', 'poster1.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
-        <img src="poster1.jpg" alt="Movie 1" />
+        <img src="{{ url_for('static', filename='poster1.jpg') }}" alt="Movie 1" />
         <h2>Movie Title 1</h2>
       </div>
       <div class="movie-card" onclick="openPlayer('Movie Title 2', 'description', 'poster2.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
-        <img src="poster2.jpg" alt="Movie 2" />
+        <img src="{{ url_for('static', filename='poster2.jpg') }}" alt="Movie 2" />
         <h2>Movie Title 2</h2>
       </div>
     </main>
@@ -30,6 +30,6 @@
       </div>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
