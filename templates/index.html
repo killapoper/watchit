@@ -4,36 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WatchIt</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
   <header>
-    <div class="logo">WatchIT</div>
-    <nav class="menu">
-      <a href="#" class="active">Главная</a>
-      <a href="#">Каталог</a>
-      <a href="#">Подборки</a>
-      <a href="#">Профиль</a>
-    </nav>
-    <div class="search-container">
-      <input type="text" placeholder="Поиск...">
-    </div>
+    <div class="logo">🎬 WatchIt</div>
+    <input type="text" placeholder="Поиск..." class="search" />
   </header>
 
   <main>
-    <section class="catalog">
-      {% for i in range(20) %}
-      <div class="card">
-        <img src="https://placehold.co/300x170/415a77/e0e1dd?text=Фильм+{{ i+1 }}" alt="Фильм {{ i+1 }}">
-        <div class="card-info">
-          <h2>Фильм {{ i+1 }}</h2>
-          <button class="watch-btn">Смотреть</button>
-        </div>
+    <section class="film-grid">
+      <!-- Ряды карточек -->
+      <div class="film-row">
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 1</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 2</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 3</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 4</span></div>
       </div>
-      {% endfor %}
+      <div class="film-row">
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 5</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 6</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 7</span></div>
+        <div class="card"><img src="https://placehold.co/300x450" alt="Фильм"><span>Фильм 8</span></div>
+      </div>
     </section>
   </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
