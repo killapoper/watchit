@@ -1,12 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach((card, i) => {
-        card.style.opacity = 0;
-        card.style.transform = "translateY(20px)";
-        setTimeout(() => {
-            card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-            card.style.opacity = 1;
-            card.style.transform = "translateY(0)";
-        }, 150 * i);
-    });
-});
+window.onload = () => {
+  // Анимация карточек
+  document.querySelectorAll('.card').forEach((c,i)=> {
+    setTimeout(()=> {
+      c.style.opacity=1; c.style.transform='translateY(0)';
+    }, 150*i);
+  });
+};
+
+function openFilm(id) {
+  window.location = `/film/${id}`;
+}
