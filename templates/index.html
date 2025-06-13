@@ -1,65 +1,35 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WatchIt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watch It</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="app-container">
-    <aside class="sidebar glass">
-      <div class="logo">WatchIt</div>
-      <nav class="menu">
-        <ul>
-          <li><i class="fas fa-film"></i><span>Фильмы</span></li>
-          <li><i class="fas fa-download"></i><span>Скачанное</span></li>
-          <li><i class="fas fa-eye"></i><span>Просмотренное</span></li>
-          <li><i class="fas fa-search"></i><span>Поиск</span></li>
-          <li><i class="fas fa-user"></i><span>Кабинет</span></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="main-content">
-      <section class="hero">
-        <h1>Добро пожаловать в WatchIt</h1>
-        <p>Минималистичный кинотеатр в стиле Apple TV</p>
-      </section>
-
-      <section class="carousel">
-        <h2>Рекомендуемое</h2>
-        <div class="film-slider">
-          <div class="film-card" onclick="openMovie()">
-            <img src="https://placehold.co/300x450" alt="" />
-            <span>Фильм 1</span>
-          </div>
-          <div class="film-card" onclick="openMovie()">
-            <img src="https://placehold.co/300x450" alt="" />
-            <span>Фильм 2</span>
-          </div>
-          <div class="film-card" onclick="openMovie()">
-            <img src="https://placehold.co/300x450" alt="" />
-            <span>Фильм 3</span>
-          </div>
-          <!-- добавим больше фильмов позже -->
-        </div>
-      </section>
+  <div class="app">
+    <header class="header">
+      <h1>Watch It</h1>
+    </header>
+    <main class="movie-list">
+      <div class="movie-card" onclick="openPlayer('Movie Title 1', 'description', 'poster1.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <img src="poster1.jpg" alt="Movie 1" />
+        <h2>Movie Title 1</h2>
+      </div>
+      <div class="movie-card" onclick="openPlayer('Movie Title 2', 'description', 'poster2.jpg', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <img src="poster2.jpg" alt="Movie 2" />
+        <h2>Movie Title 2</h2>
+      </div>
     </main>
-  </div>
-
-  <!-- Модальное окно фильма -->
-  <div class="modal" id="filmModal">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeMovie()">&times;</span>
-      <video controls autoplay>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-      </video>
+    <div id="playerModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closePlayer()">&times;</span>
+        <iframe id="playerFrame" src="" frameborder="0" allowfullscreen></iframe>
+        <h2 id="playerTitle"></h2>
+        <p id="playerDescription"></p>
+      </div>
     </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>

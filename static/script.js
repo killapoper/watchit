@@ -1,10 +1,11 @@
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    const modal = document.querySelector('.modal');
-    modal.classList.add('active');
-  });
-});
+function openPlayer(title, description, poster, url) {
+  document.getElementById('playerTitle').innerText = title;
+  document.getElementById('playerDescription').innerText = description;
+  document.getElementById('playerFrame').src = url;
+  document.getElementById('playerModal').style.display = 'block';
+}
 
-document.querySelector('.close-btn').addEventListener('click', () => {
-  document.querySelector('.modal').classList.remove('active');
-});
+function closePlayer() {
+  document.getElementById('playerModal').style.display = 'none';
+  document.getElementById('playerFrame').src = '';
+}
