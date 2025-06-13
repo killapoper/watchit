@@ -22,5 +22,5 @@ def home():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # Render укажет нужный порт
+    port = int(os.environ.get("PORT", 10000))  # Render назначит порт
     app.run(host='0.0.0.0', port=port)
