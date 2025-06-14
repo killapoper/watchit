@@ -44,9 +44,9 @@ dp = Dispatcher()
 @dp.message(F.text == "/start")
 async def cmd_start(message: types.Message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📺 Открыть каталог", web_app=WebAppInfo(url="https://watchit-3b7r.onrender.com"))]
+        [InlineKeyboardButton(text="📺 Открыть приложение", web_app=WebAppInfo(url="https://watchit-3b7r.onrender.com"))]
     ])
-    await message.answer("Добро пожаловать в FreeCinema!", reply_markup=keyboard)
+    await message.answer("Добро пожаловать в WatchIT!", reply_markup=keyboard)
 
 @dp.message(F.text == "/watch")
 async def cmd_watch(message: types.Message):
