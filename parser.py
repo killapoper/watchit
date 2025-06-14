@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 def search_hdrezka(query):
     headers = {
         'User-Agent': 'Mozilla/5.0',
@@ -16,7 +15,6 @@ def search_hdrezka(query):
         href = item.select_one('.b-content__inline_item-link')['href']
         results.append({'title': title, 'url': href})
     return results
-
 
 def get_video_links(movie_page_url):
     headers = {

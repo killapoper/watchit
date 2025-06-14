@@ -1,42 +1,70 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <title>Watch It</title>-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--  &lt;!&ndash; Заставка &ndash;&gt;-->
+<!--  <div class="splash-screen">-->
+<!--    <h1 class="splash-logo">Watch It</h1>-->
+<!--  </div>-->
+
+<!--&lt;!&ndash; Анимированный фон &ndash;&gt;-->
+<!--<div class="background-gif"></div>-->
+
+<!--  <div class="container">-->
+<!--    <header>-->
+<!--      <h1 class="title">Watch It</h1>-->
+<!--      <input type="text" placeholder="Поиск фильмов и сериалов..." class="search-input" />-->
+<!--    </header>-->
+
+<!--    <nav class="filter-bar">-->
+<!--      <button class="filter-btn">Фильмы</button>-->
+<!--      <button class="filter-btn">Сериалы</button>-->
+<!--      <button class="filter-btn">Загрузки</button>-->
+<!--    </nav>-->
+
+<!--    <main class="movie-grid">-->
+<!--      &lt;!&ndash; Карточки фильмов будут добавлены JavaScript-ом &ndash;&gt;-->
+<!--    </main>-->
+<!--  </div>-->
+
+<!--  <script src="{{ url_for('static', filename='script.js') }}"></script>-->
+<!--<div class="loader-overlay" id="loader">-->
+<!--  <div class="loader"></div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Watch It</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Watch It</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
-  <!-- Заставка -->
-  <div class="splash-screen">
-    <h1 class="splash-logo">Watch It</h1>
-  </div>
-
-<!-- Анимированный фон -->
-<div class="background-gif"></div>
-
-  <div class="container">
     <header>
-      <h1 class="title">Watch It</h1>
-      <input type="text" placeholder="Поиск фильмов и сериалов..." class="search-input" />
+        <h1>🍿 Watch It</h1>
+        <form action="/" method="get">
+            <input type="text" name="q" placeholder="Найти фильм...">
+            <button type="submit">Поиск</button>
+        </form>
     </header>
 
-    <nav class="filter-bar">
-      <button class="filter-btn">Фильмы</button>
-      <button class="filter-btn">Сериалы</button>
-      <button class="filter-btn">Загрузки</button>
-    </nav>
-
-    <main class="movie-grid">
-      <!-- Карточки фильмов будут добавлены JavaScript-ом -->
+    <main>
+        {% for film in films %}
+        <div class="film-card">
+            <a href="/film?url={{ film.url }}">
+                <img src="{{ film.image or url_for('static', filename='no_image.jpg') }}" alt="{{ film.title }}">
+                <h2>{{ film.title }}</h2>
+            </a>
+        </div>
+        {% endfor %}
     </main>
-  </div>
-
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-<div class="loader-overlay" id="loader">
-  <div class="loader"></div>
-</div>
-
 </body>
 </html>
