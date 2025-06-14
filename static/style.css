@@ -121,3 +121,21 @@ body {
   padding: 10px;
   font-size: 16px;
 }
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .film-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .film-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
