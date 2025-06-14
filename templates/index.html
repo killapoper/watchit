@@ -1,38 +1,123 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <title>Watch It</title>-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--  &lt;!&ndash; Заставка &ndash;&gt;-->
+<!--  <div class="splash-screen">-->
+<!--    <h1 class="splash-logo">Watch It</h1>-->
+<!--  </div>-->
+
+<!--&lt;!&ndash; Анимированный фон &ndash;&gt;-->
+<!--<div class="background-gif"></div>-->
+
+<!--  <div class="container">-->
+<!--    <header>-->
+<!--      <h1 class="title">Watch It</h1>-->
+<!--      <input type="text" placeholder="Поиск фильмов и сериалов..." class="search-input" />-->
+<!--    </header>-->
+
+<!--    <nav class="filter-bar">-->
+<!--      <button class="filter-btn">Фильмы</button>-->
+<!--      <button class="filter-btn">Сериалы</button>-->
+<!--      <button class="filter-btn">Загрузки</button>-->
+<!--    </nav>-->
+
+<!--    <main class="movie-grid">-->
+<!--      &lt;!&ndash; Карточки фильмов будут добавлены JavaScript-ом &ndash;&gt;-->
+<!--    </main>-->
+<!--  </div>-->
+
+<!--  <script src="{{ url_for('static', filename='script.js') }}"></script>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Watch It</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>WatchIt</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-
-  <!-- Заставка -->
-  <div class="splash-screen">
-    <h1 class="splash-logo">Watch It</h1>
-  </div>
-
-<!-- Анимированный фон -->
-<div class="background-gif"></div>
-
   <div class="container">
-    <header>
-      <h1 class="title">Watch It</h1>
-      <input type="text" placeholder="Поиск фильмов и сериалов..." class="search-input" />
-    </header>
+    <aside class="sidebar glass">
+      <div class="logo">WatchIt</div>
+      <input type="text" id="searchInput" placeholder="Поиск..." class="search" />
+      <nav>
+        <ul>
+          <li> Фильмы </li>
+          <li> Сериалы </li>
+          <li> Профиль </li>
+        </ul>
+      </nav>
+    </aside>
 
-    <nav class="filter-bar">
-      <button class="filter-btn">Фильмы</button>
-      <button class="filter-btn">Сериалы</button>
-      <button class="filter-btn">Загрузки</button>
-    </nav>
-
-    <main class="movie-grid">
-      <!-- Карточки фильмов будут добавлены JavaScript-ом -->
+    <main class="content">
+      <section class="film-grid" id="filmGrid">
+        <!-- Тут будут появлятся фильмы -->
+      </section>
     </main>
   </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <div id="playerContainer" class="player-container hidden">
+    <video id="videoPlayer" controls autoplay></video>
+    <button id="closePlayer">&times;</button>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const filmGrid = document.getElementById("filmGrid");
+    const playerContainer = document.getElementById("playerContainer");
+    const videoPlayer = document.getElementById("videoPlayer");
+    const closePlayer = document.getElementById("closePlayer");
+
+    async function searchMovies(query) {
+      const res = await fetch(`https://api-movies.github.io/kodik/search?title=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      return data.results || [];
+    }
+
+    function renderMovies(movies) {
+      filmGrid.innerHTML = "";
+      movies.forEach(movie => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<img src="https://placehold.co/300x450" alt=""><span>${movie.title}</span>`;
+        card.addEventListener("click", () => playMovie(movie.source));
+        filmGrid.appendChild(card);
+      });
+    }
+
+    function playMovie(url) {
+      playerContainer.classList.remove("hidden");
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(videoPlayer);
+      } else {
+        videoPlayer.src = url;
+      }
+    }
+
+    closePlayer.addEventListener("click", () => {
+      videoPlayer.pause();
+      videoPlayer.src = "";
+      playerContainer.classList.add("hidden");
+    });
+
+    searchInput.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
+        const movies = await searchMovies(searchInput.value);
+        renderMovies(movies);
+      }
+    });
+  </script>
 </body>
 </html>

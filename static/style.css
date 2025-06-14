@@ -95,7 +95,7 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
- Сетка фильмов
+ /*Сетка фильмов */
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
