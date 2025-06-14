@@ -17,7 +17,7 @@ async function searchMovies(query) {
   showLoader(); // ← Показываем индикатор
 
   try {
-    const res = await fetch(`https://api-movies.github.io/kodik/search?title=${encodeURIComponent(query)}`);
+  const res = await fetch(`/search_hdrezka?query=${encodeURIComponent(query)}`);
     const data = await res.json();
     return data.results || [];
   } catch (err) {
