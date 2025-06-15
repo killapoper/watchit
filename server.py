@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # Получаем поисковый запрос из GET или POST
     query = request.args.get('query') if request.method == 'GET' else request.form.get('query')
     movies = []
     if query:
