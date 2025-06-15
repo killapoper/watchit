@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    query = request.args.get('query') if request.method == 'GET' else request.form.get('query')
     movies = []
-    if request.method == 'POST':
-        query = request.form['query']
+    if query:
         try:
             movies = search_hdrezka(query)
         except Exception as e:
