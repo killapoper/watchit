@@ -9,13 +9,16 @@ import os
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-@dp.message(F.text == "/watch")
-async def cmd_watch(message: types.Message):
-    await message.answer("Открывай WatchIT 👉 https://watchit-3b7r.onrender.com")
+@dp.message(F.text == "/start")
+async def start_handler(message: types.Message):
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🎬 Открыть FreeCinema", web_app=WebAppInfo(url="https://watchit-3b7r.onrender.com"))]
+    ])
+    await message.answer("Привет! Добро пожаловать в FreeCinema 👇", reply_markup=keyboard)
 
 def run_web():
     port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host="0.0.0.0", port=port)
 
 async def main():
     await bot.delete_webhook(drop_pending_updates=True)

@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>FreeCinema</title>
-    <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8">
+  <title>FreeCinema</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="container">
-        <img src="/static/logo.png" class="logo" alt="logo">
-        <form action="/search">
-            <input type="text" name="q" placeholder="Введите название фильма..." value="{{ query or '' }}">
-        </form>
+  <div class="container">
+    <img src="/static/logo.png" class="logo" alt="FreeCinema">
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Введите название фильма..." autocomplete="off" value="{{ query or '' }}">
+    </form>
 
-        {% if results %}
-            <div class="films">
-                {% for film in results %}
-                    <div class="card">
-                        <img src="{{ film.img }}" alt="poster">
-                        <div class="info">
-                            <h3>{{ film.title }}</h3>
-                            <p>{{ film.desc }}</p>
-                            <a href="/watch?url={{ film.url }}">▶️ Смотреть</a>
-                        </div>
-                    </div>
-                {% endfor %}
+    {% if results is not none %}
+      {% if results %}
+        <div class="films">
+          {% for film in results %}
+            <div class="card">
+              <img src="{{ film.img }}" alt="Poster">
+              <div class="info">
+                <h3>{{ film.title }}</h3>
+                <p>{{ film.desc }}</p>
+                <a href="/watch?url={{ film.url }}">▶️ Смотреть</a>
+              </div>
             </div>
-        {% endif %}
-    </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="message">По запросу "{{ query }}" ничего не найдено</p>
+      {% endif %}
+    {% endif %}
+
+  </div>
 </body>
 </html>

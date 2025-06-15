@@ -5,7 +5,7 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', results=None, query=None)
 
 @app.route('/search')
 def search():
@@ -15,10 +15,6 @@ def search():
 
 @app.route('/watch')
 def watch():
-    url = request.args.get('url')
-    if not url:
-        return "Ссылка не указана", 400
+    url = request.args.get('url', '')
     video_link = get_video_links(url)
-    if not video_link:
-        return "Видео не найдено", 404
     return render_template('watch.html', video_link=video_link)
