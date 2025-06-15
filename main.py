@@ -12,7 +12,7 @@ dp = Dispatcher()
 @dp.message(F.text == "/start")
 async def start_handler(message: types.Message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎬 Открыть FreeCinema", web_app=WebAppInfo(url="https://watchit-xxxxx.onrender.com"))]
+        [InlineKeyboardButton(text="🎬 Открыть FreeCinema", web_app=WebAppInfo(url="https://watchit-3b7r.onrender.com"))]
     ])
     await message.answer("Привет! Добро пожаловать в FreeCinema 👇", reply_markup=keyboard)
 
