@@ -1,19 +1,27 @@
-from flask import Flask, render_template, request
-from parser import search_hdrezka
+# server.py
+from flask import Flask, render_template, request, redirect, url_for
+from parser import search_hdrezka, get_video_link
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    # Получаем поисковый запрос из GET или POST
-    query = request.args.get('query') if request.method == 'GET' else request.form.get('query')
-    movies = []
-    if query:
-        try:
-            movies = search_hdrezka(query)
-        except Exception as e:
-            print(f'Ошибка при поиске: {e}')
-    return render_template('index.html', movies=movies)
+    return render_template('index.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/search')
+def search():
+    query = request.args.get('q', '')
+    if not query:
+        return redirect(url_for('index'))
+    results = search_hdrezka(query)
+    return render_template('results.html', movies=results, query=query)
+
+@app.route('/watch')
+def watch():
+    url = request.args.get('url')
+    if not url:
+        return redirect(url_for('index'))
+    video_url = get_video_link(url)
+    if not video_url:
+        return "Видео не найдено 😢"
+    return render_template('player.html', video_url=video_url)

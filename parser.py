@@ -1,25 +1,30 @@
-from hdrezka import Search
-from hdrezka.api.http import login_global
-import os, asyncio
-
-# Если сайт HDRezka требует обход Cloudflare, можно настроить login
-# os.environ['LOGIN_NAME']='ваш_логин'
-# os.environ['LOGIN_PASSWORD']='ваш_пароль'
-# asyncio.run(login_global(os.environ['LOGIN_NAME'], os ... ))
-
-async def get_search_results(query):
-    results = await Search(query).get_page(1)
-    movies = []
-    for item in results[:10]:
-        player = await item.player
-        movies.append({
-            'title': item.title,
-            'url': item.url,
-            'img': item.thumbnail,
-            'desc': item.description or '—',
-            'player_url': await player.get_stream(1, 1, None)
-        })
-    return movies
+# parser.py
+from HdRezkaApi import HdRezkaSearch, HdRezkaApi
 
 def search_hdrezka(query):
-    return asyncio.run(get_search_results(query))
+    try:
+        pages = HdRezkaSearch("https://hdrezka.ag/")(query, find_all=False)
+        items = pages.first
+        res = []
+        for it in items[:10]:
+            res.append({
+                'title': it['title'],
+                'url': it['url'],
+                'img': it['image'],
+                'desc': ''
+            })
+        return res
+    except Exception as e:
+        print("Ошибка поиска:", e)
+        return []
+
+def get_video_link(movie_url):
+    try:
+        api = HdRezkaApi(movie_url)
+        if not api.ok:
+            return None
+        stream = api.getStream()
+        return stream('720p') or stream('480p') or stream('360p') or None
+    except Exception as e:
+        print("Ошибка получения видео:", e)
+        return None
