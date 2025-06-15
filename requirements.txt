@@ -3,3 +3,4 @@ requests
 beautifulsoup4
 aiogram==3.20.0.post0
 aiohttp
+python-dotenv
