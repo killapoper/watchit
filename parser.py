@@ -1,24 +1,25 @@
-import requests
-from bs4 import BeautifulSoup
+from hdrezka import Search
+from hdrezka.api.http import login_global
+import os, asyncio
+
+# Если сайт HDRezka требует обход Cloudflare, можно настроить login
+# os.environ['LOGIN_NAME']='ваш_логин'
+# os.environ['LOGIN_PASSWORD']='ваш_пароль'
+# asyncio.run(login_global(os.environ['LOGIN_NAME'], os ... ))
+
+async def get_search_results(query):
+    results = await Search(query).get_page(1)
+    movies = []
+    for item in results[:10]:
+        player = await item.player
+        movies.append({
+            'title': item.title,
+            'url': item.url,
+            'img': item.thumbnail,
+            'desc': item.description or '—',
+            'player_url': await player.get_stream(1, 1, None)
+        })
+    return movies
 
 def search_hdrezka(query):
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    url = f"https://hdrezka.ag/search/?do=search&subaction=search&q={query}"
-    r = requests.get(url, headers=headers)
-    soup = BeautifulSoup(r.text, 'html.parser')
-    results = []
-    for item in soup.select('.b-content__inline_item')[:10]:
-        title = item.select_one('.b-content__inline_item-link').text.strip()
-        href = item.select_one('.b-content__inline_item-link')['href']
-        img = item.select_one('img')['src']
-        desc_tag = item.select_one('.b-content__inline_item-cover-descr')
-        desc = desc_tag.text.strip() if desc_tag else ''
-        results.append({'title': title, 'url': href, 'img': img, 'desc': desc})
-    return results
-
-def get_video_links(movie_url):
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    r = requests.get(movie_url, headers=headers)
-    soup = BeautifulSoup(r.text, 'html.parser')
-    iframe = soup.find('iframe')
-    return iframe['src'] if iframe else ''
+    return asyncio.run(get_search_results(query))
