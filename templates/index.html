@@ -44,27 +44,30 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Watch It</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>FreeCinema</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <header>
-        <h1>🍿 Watch It</h1>
-        <form action="/" method="get">
-            <input type="text" name="q" placeholder="Найти фильм...">
-            <button type="submit">Поиск</button>
+    <div class="container">
+        <img src="/static/logo.png" class="logo" alt="Logo">
+        <form action="/search">
+            <input type="text" name="q" placeholder="Поиск фильмов..." value="{{ query or '' }}">
         </form>
-    </header>
 
-    <main>
-        {% for film in films %}
-        <div class="film-card">
-            <a href="/film?url={{ film.url }}">
-                <img src="{{ film.image or url_for('static', filename='no_image.jpg') }}" alt="{{ film.title }}">
-                <h2>{{ film.title }}</h2>
-            </a>
-        </div>
-        {% endfor %}
-    </main>
+        {% if results %}
+            <div class="films">
+                {% for film in results %}
+                    <div class="card">
+                        <img src="{{ film.img }}" alt="Poster">
+                        <div class="card-body">
+                            <h3>{{ film.title }}</h3>
+                            <p>{{ film.desc }}</p>
+                            <a href="/watch?url={{ film.url }}">Смотреть</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
