@@ -1,5 +1,6 @@
-flask==3.0.3
+Flask==3.0.3
 aiogram==2.25.2
+aiohttp==3.8.6
 beautifulsoup4==4.12.3
 requests==2.31.0
 gunicorn==21.2.0
