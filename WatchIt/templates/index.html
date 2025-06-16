@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch It — Онлайн Кинотеатр</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>🎬 Watch It</h1>
+    <form method="get" action="/">
+        <input type="text" name="query" placeholder="Введите название фильма..." required>
+        <button type="submit">🔍 Поиск</button>
+    </form>
+
+    <div class="movies">
+        {% for movie in movies %}
+        <div class="movie" onclick="location.href='{{ url_for('watch', movie_url=movie.url | urlencode) }}'">
+            <img src="{{ movie.image }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

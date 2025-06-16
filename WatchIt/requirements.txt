@@ -1,0 +1,4 @@
+Flask
+aiogram
+requests
+beautifulsoup4
