@@ -22,9 +22,9 @@ async def search(msg: types.Message):
 
     for movie in movies[:5]:
         btn = InlineKeyboardMarkup().add(
-            InlineKeyboardButton("Смотреть", url=movie['link'])
+            InlineKeyboardButton("Смотреть", url=movie['https://watchit-3b7r.onrender.com'])
         )
         await msg.answer_photo(movie['image'], caption=movie['title'], reply_markup=btn)
 
-if name == '__main__':
+if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

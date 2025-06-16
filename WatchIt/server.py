@@ -15,5 +15,5 @@ def index():
 def watch(video_link):
     return render_template('player.html', video_link=video_link)
 
-if name == '__main__':
+if __name__ == '__main__':
     app.run(debug=True)
