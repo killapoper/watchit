@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch It</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>🎬 Watch It</h1>
+    <form method="get" action="/">
+        <input type="text" name="q" placeholder="Поиск фильма..." value="{{ query or '' }}">
+        <button type="submit">🔍</button>
+    </form>
+
+    <div class="movies">
+        {% for m in movies %}
+        <div class="movie" onclick="location.href='{{ url_for('watch') }}?url={{ m.url }}'">
+            <img src="{{ m.image }}" alt="{{ m.title }}">
+            <h3>{{ m.title }}</h3>
+            <p>{{ m.desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

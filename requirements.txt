@@ -1,0 +1,5 @@
+flask==3.0.3
+aiogram==3.7.0
+beautifulsoup4==4.12.3
+requests==2.31.0
+gunicorn==21.2.0
